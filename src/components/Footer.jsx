@@ -25,8 +25,10 @@ export default function Footer() {
     dispatch(changedStatus(staus));
   };
 
-  const handleColor = (color) => {
-    dispatch(colorToggleAction(color));
+  const handleChangedColor = (color) => {
+    filters.colors.includes(color)
+      ? dispatch(colorToggleAction(color))
+      : dispatch(colorToggleAction(color, "added"));
   };
   return (
     <div className="mt-4 flex justify-between text-xs text-gray-500">
@@ -51,7 +53,7 @@ export default function Footer() {
         <li
           onClick={() => handleStatus("Complete")}
           className={`cursor-pointer ${
-            filters.staus == "Complete" && "font-bold"
+            filters.status == "Complete" && "font-bold"
           }`}
         >
           Complete
@@ -59,21 +61,21 @@ export default function Footer() {
         <li></li>
         <li></li>
         <li
-          onClick={() => handleColor("green")}
+          onClick={() => handleChangedColor("green")}
           className={`h-3 w-3 border-2 border-green-500 md:hover:bg-green-500 rounded-full cursor-pointer ${
-            todos?.color == "green" && "bg-green-500"
+            filters?.colors.includes("green") && "bg-green-500"
           }`}
         ></li>
         <li
-          onClick={() => handleColor("red")}
-          lassName={`h-3 w-3 border-2 border-red-500 md:hover:bg-red-500 rounded-full cursor-pointer ${
-            todos?.color == "red" && "bg-red-500"
+          onClick={() => handleChangedColor("red")}
+          className={`h-3 w-3 border-2 border-red-500 md:hover:bg-red-500 rounded-full cursor-pointer ${
+            filters?.colors.includes("red") && "bg-red-500"
           }`}
         ></li>
         <li
-          onClick={() => handleColor("yellow")}
-          lassName={`h-3 w-3 border-2 border-yellow-500 md:hover:bg-yellow-500 rounded-full cursor-pointer ${
-            todos?.color == "yellow" && "bg-yellow-500"
+          onClick={() => handleChangedColor("yellow")}
+          className={`h-3 w-3 border-2 border-yellow-500 md:hover:bg-yellow-500 rounded-full cursor-pointer ${
+            filters?.colors.includes("yellow") && "bg-yellow-500"
           }`}
         ></li>
       </ul>

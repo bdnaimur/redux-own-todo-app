@@ -13,10 +13,20 @@ const filterReducer = (state = initialState, action) => {
         colors: [...state.colors, action.payload],
       };
     case COLORTOGGLED:
-      return {
-        ...state,
-        colors: [...state.colors, action.payload],
-      };
+      if (action.payload.actionType == 'added') {
+        console.log('from added');
+        return {
+          ...state,
+          colors: [...state.colors, action.payload.color],
+        };
+      }else {
+        console.log('from removed')
+        return {
+          ...state,
+          colors: state.colors.filter(color =>  color !== action.payload.color),
+        };
+      }
+      
     case CHANGEDSTATUS:
       //   const { status } = action.payload;
       return {

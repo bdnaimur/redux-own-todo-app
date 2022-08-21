@@ -1,9 +1,12 @@
 import { CHANGEDSTATUS, COLORADDED, COLORTOGGLED } from "./filterTypes";
 
-export const colorToggleAction = (color) => {
+export const colorToggleAction = (color, action) => {
   return {
     type: COLORTOGGLED,
-    payload: color,
+    payload: {
+      color,
+      actionType: action
+    }
   };
 };
 
